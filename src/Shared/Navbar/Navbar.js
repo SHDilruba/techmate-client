@@ -12,16 +12,16 @@ const Navbar = () => {
   .catch(error => console.log(error));
 }
   const menuItems = <React.Fragment>
-         <li><Link to="/home">Home</Link></li>
-         <li><Link to="/Blog">Blog</Link></li>
-         <li><Link to="/about">About</Link></li>
+         <li className='hover:text-accent'><Link to="/home">HOME</Link></li>
+         <li className='hover:text-accent'><Link to="/Blog">BLOG</Link></li>
+         <li className='hover:text-accent'><Link to="/about">ABOUT</Link></li>
         { user?.uid ? 
         <>
-         <li><Link to="/dashboard">Dashboard</Link></li>
-         <li><button onClick={handleLogOut}>Sign out</button></li>
+         <li className='hover:text-accent'><Link to="/dashboard">DASHBOARD</Link></li>
+         <li><button onClick={handleLogOut}>SIGN OUT</button></li>
         </>
         :
-        <li><Link to="/login"><button className="btn btn-outline btn-secondary btn-sm">Login</button></Link> </li>
+        <li className='hover:text-accent'><Link to="/login"><button className="btn btn-outline btn-secondary btn-sm">LOGIN</button></Link> </li>
          }
      </React.Fragment>
 
@@ -38,7 +38,7 @@ const Navbar = () => {
       </div>
       <img className="w-16 h-10 rounded-md p-0.5 bg-gradient-to-r from-secondary to-accent shadow-4xl" src={logo2} alt="" />
 
-      <Link to="/" className="ml-2 text-2xl text-secondary-focus ">TechMate</Link>
+      <Link to="/" className="font-serif  ml-2 text-2xl text-secondary-focus hover:text-accent  ">TechMate</Link>
     </div>
     <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal p-0">
