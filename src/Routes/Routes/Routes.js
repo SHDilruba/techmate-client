@@ -25,7 +25,6 @@ import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts";
       },
       {
         path: '/blog',
-        // loader: ({params})=> fetch(`https://localhost:5000/category/${params.id}`),
         element: <Blog></Blog>
       },
       {
