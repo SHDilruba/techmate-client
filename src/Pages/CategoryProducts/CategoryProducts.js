@@ -4,13 +4,11 @@ import ProductsCard from '../../components/ProductsCard';
 
 const CategoryProducts = () => {
     const categoryProducts = useLoaderData();
-    // console.log(categoryProducts);
     
     return (
-          <div>
-              <h2 className='text-4xl mt-10 mb-10 text-center font-sans text-secondary'>This Category has available: {categoryProducts.length} {categoryProducts.length > 1 ? 'items' : 'item'}</h2>
-               <div className='bg-accent pb-5 pt-10 md:mx-40 rounded-xl'>          
-           <div className='lg:flex justify-center gap-8 mx-auto container'>
+          <div className='my-10 md:mx-40'>
+              <h2 className='text-4xl mb-8 text-center font-sans text-secondary'>This Category has {categoryProducts.length} {categoryProducts.length > 1 ? 'items available' : 'item available'}</h2>
+              <div className='grid grid-cols-1 md:grid-cols-2 mx-auto md: mx-20  px-10 bg-accent py-10 rounded-xl'>
             {
                 categoryProducts.map(product =><ProductsCard
                     key={product._id}
@@ -18,7 +16,6 @@ const CategoryProducts = () => {
                 ></ProductsCard>)
             }
            </div>
-        </div>
           </div>
     );
 };
