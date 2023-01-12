@@ -8,6 +8,7 @@ import Blog from "../../Pages/Blog/Blog";
 import DisplayError from "../../Shared/DisplayError/DisplayError";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts";
+import About from "../../Pages/About/About";
 
  const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts";
       {
         path: '/home',
         element: <Home></Home>
+      },
+      {
+        path: '*',
+        element: <About></About>
       },
       {
         path: '/blog',
