@@ -4,6 +4,7 @@ import ProductsCard from '../../components/ProductsCard';
 
 const CategoryProducts = () => {
     const categoryProducts = useLoaderData();
+    console.log(categoryProducts);
     
     return (
           <div className='my-10 md:mx-40'>
