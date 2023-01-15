@@ -18,10 +18,11 @@ const Navbar = () => {
         { user?.uid ? 
         <>
          <li className='hover:text-accent'><Link to="/dashboard">DASHBOARD</Link></li>
-         <li><button onClick={handleLogOut}>SIGN OUT</button></li>
+         <li className='hover:text-accent'><Link to="/addProduct">ADD PRODUCT</Link></li>
+         <li><button className='btn btn-outline btn-secondary rounded btn-sm pt-2 mt-2' onClick={handleLogOut}>SIGN OUT</button></li>
         </>
         :
-        <li className='hover:text-accent'><Link to="/login"><button className="btn btn-outline btn-secondary btn-sm">LOGIN</button></Link> </li>
+        <li className=''><Link to="/login"><button className="btn btn-outline btn-secondary rounded btn-sm">LOGIN</button></Link> </li>
          }
      </React.Fragment>
 

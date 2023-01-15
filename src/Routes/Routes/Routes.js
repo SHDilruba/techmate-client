@@ -9,6 +9,7 @@ import DisplayError from "../../Shared/DisplayError/DisplayError";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts";
 import About from "../../Pages/About/About";
+import AddProduct from "../../Pages/AddProduct/AddProduct";
 
  const router = createBrowserRouter([
   {
@@ -30,14 +31,18 @@ import About from "../../Pages/About/About";
       },
       {
         path: '/blog',
-        element: <Blog></Blog>,
-        loader: () => fetch('http://localhost:5000/blog')
+        element: <Blog></Blog>
       },
       {
         path: '/category/:id',
-        element: <CategoryProducts></CategoryProducts>,
+        element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
     },
+    {
+      path: '/addProduct',
+      element: <AddProduct></AddProduct>,
+       loader: () => fetch('http://localhost:5000/products') 
+      },
       {
         path: '/login',
         element: <Login></Login>

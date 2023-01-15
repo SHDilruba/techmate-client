@@ -2,12 +2,11 @@ import img1 from "../../assets/banner/ban1.png";
 import img2 from "../../assets/banner/ban2.webp"
 import img3 from "../../assets/banner/ban3.png"
 import img4 from "../../assets/banner/ban4.jpeg"
-import '../../Pages/Style.css';
 
 const Carousel = () => {
   return (
   <div id='slider' className='container'>
-         <div className="carousel w-full h-126 mb-28">
+         <div className="carousel w-full h-126 mb-28  h-[38rem]">
     <div id="slide1" className="carousel-item relative w-full">
       <img src={img1} className="w-full" />
       <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
