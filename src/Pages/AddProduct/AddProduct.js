@@ -28,7 +28,6 @@ const AddProduct = () => {
 
     const product = {
       product: category_id,
-      // category_id,
       img,
       name,
       description,
