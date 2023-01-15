@@ -10,6 +10,9 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts";
 import About from "../../Pages/About/About";
 import AddProduct from "../../Pages/AddProduct/AddProduct";
+import AdminRoute from "../../Routes/AdminRoute/AdminRoute";
+import ManageSellers from "../../Pages/Dashboard/Dashboard/ManageSellers/ManageSellers";
+import AllUsers from "../../Pages/Dashboard/Dashboard/AllUsers/AllUsers";
 
  const router = createBrowserRouter([
   {
@@ -40,9 +43,9 @@ import AddProduct from "../../Pages/AddProduct/AddProduct";
     },
     {
       path: '/addProduct',
-      element: <AddProduct></AddProduct>,
-       loader: () => fetch('http://localhost:5000/products') 
-      },
+      element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>,
+      loader: () => fetch('http://localhost:5000/products')
+    },
       {
         path: '/login',
         element: <Login></Login>
@@ -59,9 +62,14 @@ import AddProduct from "../../Pages/AddProduct/AddProduct";
     errorElement: <DisplayError></DisplayError>,
     children: [
       {
-        path: '/dashboard',
-        element: <div></div>
-      }
+        path: '/dashboard/allusers',
+        element: <AllUsers></AllUsers>
+      },
+      {
+        path: '/dashboard/managesellers',
+        element:
+        <ManageSellers></ManageSellers>
+      },
     ]
   }
 

@@ -4,7 +4,7 @@ import useTitle from '../../Shared/hooks/useTitle';
 
 const Blog = () => {
   useTitle('Blog');
-
+// const [blogPosts, setBlogPost] = useState();
 const {data:blogPosts = []} = useQuery({
       queryKey: ['blogPosts'],
       queryFn: () => fetch('http://localhost:5000/blog')
