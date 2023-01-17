@@ -27,7 +27,7 @@ const AddProduct = () => {
     const date = form.date.value;
 
     const product = {
-      product: category_id,
+      category_id,
       img,
       name,
       description,
@@ -94,9 +94,9 @@ const AddProduct = () => {
               <input name="original_price" type="text" className="form-control text-center py-3 w-2/3 mx-auto" placeholder="original-price" />
             </div>
             <div className='text-center'>
-             <input name="date" type='text' className="form-control text-center py-3 w-2/3 mx-auto" value= {displayTodaysDate} readOnly='true'/>
+             <input name="date" type='text' className="form-control text-center py-3 w-2/3 mx-auto mb-3" value= {displayTodaysDate} readOnly='true'/>
          </div>          
-            <input className='btn btn-secondary w-2/4 mt-3 mb-4 py-2' type="submit" />
+            <button className='btn btn-secondary w-2/4 mt-3 mb-4 py-2' type="submit">Add Product</button>
           </form>
       </div>
     </div>
