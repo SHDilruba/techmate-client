@@ -30,7 +30,7 @@ const handleMakeAdmin = id =>{
 
   return (
     <div>
-      <h2 className="text-3xl">All Users</h2>
+      <h2 className="text-3xl ml-5 my-8 text-accent">All Users</h2>
       <div className="overflow-x-auto">
   <table className="table w-full">
      <thead>
@@ -38,7 +38,7 @@ const handleMakeAdmin = id =>{
           <th></th>
           <th>Name</th>
           <th>Email</th>
-          <th>Admin</th>
+          <th>Make Admin</th>
           <th>Delete</th>
         </tr>
      </thead>
@@ -48,8 +48,8 @@ const handleMakeAdmin = id =>{
               <th>{i+1}</th>
               <td>{user.name}</td>
               <td>{user.email}</td>
-              <td>{ user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>}</td>
-              <td><button className='btn btn-xs btn-danger'>Delete</button></td>
+              <td>{ user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-accent'>Make Admin</button>}</td>
+              <td><button className='btn btn-xs bg-red-600'>Delete</button></td>
             </tr>)
          }
       </tbody>

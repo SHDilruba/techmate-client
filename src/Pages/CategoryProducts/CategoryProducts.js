@@ -20,7 +20,7 @@ const CategoryProducts = () => {
             }
            </div>
                {
-                modalContent.map(content => <BookingModal key={content._id} content={content}></BookingModal>)
+                modalContent.map(content =><BookingModal key={content._id} content={content}></BookingModal>)
                }
           </div>
     );

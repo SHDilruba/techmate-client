@@ -10,11 +10,10 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts";
 import About from "../../Pages/About/About";
 import AddProduct from "../../Pages/AddProduct/AddProduct";
-import AdminRoute from "../../Routes/AdminRoute/AdminRoute";
 import ManageSellers from "../../Pages/Dashboard/Dashboard/ManageSellers/ManageSellers";
-import AllUsers from "../../Pages/Dashboard/Dashboard/AllUsers/AllUsers";
-import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
-import BookingModal from "../../components/BookingModal/BookingModal";
+import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
+import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
 
  const router = createBrowserRouter([
   {
@@ -43,11 +42,6 @@ import BookingModal from "../../components/BookingModal/BookingModal";
         element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
     },
-      {
-        path: '/products/:id',
-        element: <PrivateRoute><BookingModal></BookingModal></PrivateRoute>
-        // loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
-    },
     {
       path: '/addProduct',
       element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>,
@@ -70,7 +64,7 @@ import BookingModal from "../../components/BookingModal/BookingModal";
     children: [
       {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>
+        element: <MyOrders></MyOrders> 
       },
       {
         path: '/dashboard/allusers',
@@ -80,6 +74,10 @@ import BookingModal from "../../components/BookingModal/BookingModal";
         path: '/dashboard/managesellers',
         element:
         <ManageSellers></ManageSellers>
+      },
+      {
+        path: '/dashboard/payment/:id',
+        element: <Payment></Payment>
       },
     ]
   }
