@@ -32,7 +32,8 @@ const SignUp = () => {
       //  form.reset();
        toast.success('Signed up successfully')
         const userInfo = {
-        displayName: data.name
+        displayName: data.name,
+        role: data.role
        }
        updateUser(userInfo)
        .then(() =>{
@@ -103,17 +104,6 @@ const SignUp = () => {
                 {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
             </div>
             
-            <div className="form-control w-ful max-w-xs mb-8">
-                <label className="label">
-                    <span className="label-text">Please Select an option</span>
-                </label>
-                <select
-               {...register("option")}
-               className="input input-bordered w-full max-w-xs">              
-                <option>User</option>
-                <option>Seller</option>
-                </select>
-            </div>
               <button className='btn btn-secondary bg-gradient-to-r from-secondary to-accent w-full' type="submit"> {loading ? <Loading></ Loading>:'Sign Up'
               }  </button>
               {signUpError && <p className='text-red-600'>{signUpError}</p>}

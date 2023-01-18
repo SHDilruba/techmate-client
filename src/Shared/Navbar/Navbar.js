@@ -12,17 +12,17 @@ const Navbar = () => {
   .catch(error => console.log(error));
 }
   const menuItems = <React.Fragment>
-         <li className='hover:text-accent'><Link to="/home">HOME</Link></li>
-         <li className='hover:text-accent'><Link to="/Blog">BLOG</Link></li>
-         <li className='hover:text-accent'><Link to="/about">ABOUT</Link></li>
+         <li className='hover:text-accent text-[0.8rem]'><Link to="/home">HOME</Link></li>
+         <li className='hover:text-accent text-[0.8rem]'><Link to="/Blog">BLOG</Link></li>
+         <li className='hover:text-accent text-[0.8rem]'><Link to="/about">ABOUT</Link></li>
         { user?.uid ? 
         <>
-         <li className='hover:text-accent'><Link to="/dashboard">DASHBOARD</Link></li>
-         <li className='hover:text-accent'><Link to="/addProduct">ADD PRODUCT</Link></li>
-         <li><button className='btn btn-outline btn-secondary rounded btn-sm pt-2 mt-2' onClick={handleLogOut}>SIGN OUT</button></li>
+         <li className='hover:text-accent text-[0.8rem]'><Link to="/dashboard">DASHBOARD</Link></li>
+         <li className='hover:text-accent text-[0.8rem]'><Link to="/addProduct">ADD PRODUCT</Link></li>
+         <li><button className='btn btn-outline btn-secondary rounded btn-sm pt-2 mt-2 text-[0.8rem] ' onClick={handleLogOut}>SIGN OUT</button></li>
         </>
         :
-        <li className=''><Link to="/login"><button className="btn btn-outline btn-secondary rounded btn-sm">LOGIN</button></Link> </li>
+        <li className=''><Link to="/login"><button className="btn btn-outline btn-secondary rounded btn-sm text-[0.8rem]">LOGIN</button></Link> </li>
          }
      </React.Fragment>
 

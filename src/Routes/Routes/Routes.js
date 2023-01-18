@@ -10,12 +10,13 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts";
 import About from "../../Pages/About/About";
 import AddProduct from "../../Pages/AddProduct/AddProduct";
-import ManageSellers from "../../Pages/Dashboard/Dashboard/ManageSellers/ManageSellers";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyWishList from "../../Pages/Dashboard/MyWishList/MyWishList";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
+import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 
  const router = createBrowserRouter([
   {
@@ -77,12 +78,15 @@ import AdminRoute from "../AdminRoute/AdminRoute";
         element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
       },
       {
-        path: '/dashboard/managesellers',
-        element:
-        <AdminRoute><ManageSellers></ManageSellers></AdminRoute>
+        path: '/dashboard/users/sellers',
+        element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
       },
       {
-        path: '/dashboard/payment/:id',
+        path: '/dashboard/users/buyers',
+        element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
+      },
+      {
+        path: '/dashboard',
         element: <Payment></Payment>
       },
     ]
