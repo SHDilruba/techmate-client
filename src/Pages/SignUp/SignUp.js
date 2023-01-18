@@ -63,12 +63,12 @@ const SignUp = () => {
   }
 
   return (
-    <div className='h-[800px] flex justify-center items-center'>
-       <div className='w-96 px-10 pb-10 shadow-lg rounded-lg'>
-          <h2 className='text-4xl text-center mb-8 text-secondary'>Sign Up</h2>
+    <div className='h-full flex justify-center items-center mt-10 w-96 mx-auto'>
+       <div className='w-full px-10  pb-10 shadow-lg rounded-lg bg-accent pt-10'>
+          <h2 className='text-4xl text-center mb-5 text-secondary'>Sign Up</h2>
 
           <form onSubmit={handleSubmit(handleSignUp)}>
-            <div className="form-control w-full max-w-xs">
+            <div className="form-control  max-w-xs w-full">
                 <label className="label">
                     <span className="label-text">Name</span>
                 </label>
@@ -102,14 +102,26 @@ const SignUp = () => {
                 className="input input-bordered w-full max-w-xs mb-5"/>
                 {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
             </div>
-              <button className='btn btn-accent w-full' type="submit"> {loading ? <Loading></ Loading>:'Sign Up'
+            
+            <div className="form-control w-ful max-w-xs mb-8">
+                <label className="label">
+                    <span className="label-text">Please Select an option</span>
+                </label>
+                <select
+               {...register("option")}
+               className="input input-bordered w-full max-w-xs">              
+                <option>User</option>
+                <option>Seller</option>
+                </select>
+            </div>
+              <button className='btn btn-secondary bg-gradient-to-r from-secondary to-accent w-full' type="submit"> {loading ? <Loading></ Loading>:'Sign Up'
               }  </button>
               {signUpError && <p className='text-red-600'>{signUpError}</p>}
           </form>
 
           <p className='my-2'><small>Allready have an account?</small> <Link className='text-secondary' to="/login">Please Login </Link></p> 
-          <div className="divider my-6">OR</div>
-         <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE </button>
+          <div className="divider mt-6">OR</div>
+         <button className='btn btn-Ghost outline text-black bg-base-300 w-full mb-6'>CONTINUE WITH GOOGLE </button>
       </div>
     </div>
   );

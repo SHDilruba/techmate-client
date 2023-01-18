@@ -55,18 +55,26 @@ const ProductsCard = ({ product, setModalContent }) => {
             </p>
           </div>
         </div>
-        <div className="card-actions items-center justify-center mt-3 bg-accent px-6 py-3 rounded-lg ">
-          <div className="md:mr-10">
-            <p className="text-2xl font-semibold rounded-md px-4 py-1 text-white">
+        <div className="card-actions items-center justify-center mt-3 bg-accent  py-3 rounded-lg md:w-full">
+          <div className="md:mr-2">
+            <p className="text-xl font-semibold rounded-md py-1 text-white">
               Price: {resale_price}
             </p>
           </div>
+           
+          <label
+              onClick={()=>changeContent(product)}
+              htmlFor="Wishlist-modal"
+              className="btn w-1/4 bg-base-300 hover:bg-secondary hover:text-white rounded text-secondary mr-2"
+            > Add to Wishlist
+          </label>
           <label
             onClick={()=>changeContent(product)}
             htmlFor="booking-modal"
             className="btn btn-secondary bg-gradient-to-l from-secondary to-accent rounded text-white"
           > Book Now 
           </label> 
+
         </div>
       </div>
     </div>

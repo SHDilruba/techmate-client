@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import BookingModal from '../../components/BookingModal/BookingModal';
 import ProductsCard from '../../components/ProductsCard/ProductsCard';
+import WishList from '../../components/WishList/WishList';
 
 const CategoryProducts = () => {
     const categoryProducts = useLoaderData();
@@ -21,6 +22,9 @@ const CategoryProducts = () => {
            </div>
                {
                 modalContent.map(content =><BookingModal key={content._id} content={content}></BookingModal>)
+               }
+                {
+                modalContent.map(content =><WishList key={content._id} content={content}></WishList>)
                }
           </div>
     );

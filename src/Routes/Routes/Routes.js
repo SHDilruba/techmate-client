@@ -13,7 +13,9 @@ import AddProduct from "../../Pages/AddProduct/AddProduct";
 import ManageSellers from "../../Pages/Dashboard/Dashboard/ManageSellers/ManageSellers";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
+import MyWishList from "../../Pages/Dashboard/MyWishList/MyWishList";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
+import AdminRoute from "../AdminRoute/AdminRoute";
 
  const router = createBrowserRouter([
   {
@@ -67,13 +69,17 @@ import Payment from "../../Pages/Dashboard/Payment/Payment";
         element: <MyOrders></MyOrders> 
       },
       {
+        path: '/dashboard/wishlist',
+        element: <MyWishList></MyWishList> 
+      },
+      {
         path: '/dashboard/allusers',
-        element: <AllUsers></AllUsers>
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
       },
       {
         path: '/dashboard/managesellers',
         element:
-        <ManageSellers></ManageSellers>
+        <AdminRoute><ManageSellers></ManageSellers></AdminRoute>
       },
       {
         path: '/dashboard/payment/:id',
