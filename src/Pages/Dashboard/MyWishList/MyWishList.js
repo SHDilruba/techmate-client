@@ -21,7 +21,7 @@ const MyWishList = () => {
     });
    
      return (
-       <div className=' mb-20'>
+       <div className='mb-20'>
             <h3 className="mb-8 text-4xl text-accent my-10 ml-5">My Wishlist</h3>
             <div className="overflow-x-auto w-full">
             <table className="table w-full">
@@ -39,14 +39,14 @@ const MyWishList = () => {
               wishlist &&
                wishlist?.map((p, i) => <tr key={p._id}>
                  <th className='text-[0.7rem] md:text-[1rem]'>{i+1}</th>
-                 <td><img className='w-[3rem] md:w-[10rem]' src={p.img} alt="" /></td>
-                 <td className='text-[0.5rem] md:text-[1.2rem]'>{p.name}</td>
+                 <td><img className='w-[3rem] md:w-[6rem]' src={p.img} alt="" /></td>
+                 <td className=''>{p.name}</td>
                  <td className='text-[0.6rem]md:text-[1.5rem]'>{p.resale_price}</td>
                  <td>
                    {
                       p.resale_price && !p.paid && <Link to={`/dashboard/payment/${p._id}`}>
                          <button 
-                             className='btn btn-accent btn-sm text-[0.7rem] md:text-[1.2rem]'
+                             className='btn btn-accent btn-sm'
                         >Buy</button>
                       </Link>
                    }

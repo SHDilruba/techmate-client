@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import useTitle from '../../../Shared/hooks/useTitle';
 
 const AllBuyers = () => {
+  useTitle('AllBuyers');
 
   const {data: buyers = [], refetch} = useQuery({
      queryKey: ['buyers'],

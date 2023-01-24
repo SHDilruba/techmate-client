@@ -88,9 +88,8 @@ const Login = () => {
                 <select
                {...register("role")}
                className="input input-bordered w-full max-w-xs">              
-                <option>User</option>
-                <option>Seller</option>
-                <option>Admin</option>
+                <option>user</option>
+                <option>seller</option>
                 </select>
             </div>
 

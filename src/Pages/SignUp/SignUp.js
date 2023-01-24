@@ -33,11 +33,12 @@ const SignUp = () => {
        toast.success('Signed up successfully')
         const userInfo = {
         displayName: data.name,
-        role: data.role
+        role: data.role,
+        quality: data.quality
        }
        updateUser(userInfo)
        .then(() =>{
-           saveUser(data.name, data.email);
+           saveUser(data.name, data.email, data.role, data.quality);
        })
        .catch(err => console.log(err));
     })
@@ -48,8 +49,8 @@ const SignUp = () => {
     })
   };
 
-  const saveUser = (name, email) =>{
-      const user = {name, email};
+  const saveUser = (name, email, role, quality) =>{
+      const user = {name, email, role, quality};
       fetch('http://localhost:5000/users', {
          method: 'POST',
          headers: {
@@ -78,6 +79,17 @@ const SignUp = () => {
                 })}
                 className="input input-bordered w-full max-w-xs" />
                   {errors.name && <p className='text-red-600'>{errors.name?.message}</p>}
+            </div>
+            <div className="form-control  max-w-xs w-full">
+                <label className="label">
+                    <span className="label-text">User Role</span>
+                </label>
+                <select
+               {...register("role")}
+               className="input input-bordered w-full max-w-xs">              
+                <option>User</option>
+                <option>Seller</option>
+                </select>
             </div>
 
             <div className="form-control w-full max-w-xs">

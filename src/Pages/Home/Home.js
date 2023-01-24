@@ -10,10 +10,10 @@ const Home = () => {
   return (
     <div>
       <Carousel></Carousel>
-    <div className='text-center mb-5'>
-    <Categories></Categories>
-    </div>
-       <Accordion></Accordion>
+       <div className='text-center mb-5'>
+          <Categories></Categories>
+       </div>
+      <Accordion></Accordion>
     </div>
   );
 };

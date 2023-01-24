@@ -57,7 +57,7 @@ const WishList = (content) => {
                   <input name="name" type="text" defaultValue={content.content.name} className="input w-full input-bordered outline" disabled placeholder="Product Name" />
                   <input name="resale_price" type="text" defaultValue={content.content.resale_price} className="input w-full outline bordered" disabled placeholder="Price" />
                   <input name="img" type="url" className="input w-full input-bordered outline" defaultValue={content.content.img} />
-                  <input className='btn btn-secondary w-full outline' type="submit" value="Add to Wishlist" />
+                  <input className='btn btn-secondary w-full outline' type="submit" value="Confirm to Wishlist" />
               </form>
             </div>
          </div>

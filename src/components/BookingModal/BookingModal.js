@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
+
 import { AuthContext } from '../../contexts/AuthProvider';
 
   const BookingModal = (content) => {
     const {user} = useContext(AuthContext);
-
   
     const handleBooking = event =>{
       event.preventDefault();

@@ -9,89 +9,121 @@ import DisplayError from "../../Shared/DisplayError/DisplayError";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts";
 import About from "../../Pages/About/About";
-import AddProduct from "../../Pages/AddProduct/AddProduct";
+import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyWishList from "../../Pages/Dashboard/MyWishList/MyWishList";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
 import AdminRoute from "../AdminRoute/AdminRoute";
-import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
+import AllSeller from "../../Pages/Dashboard/AllSeller/AllSellers";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
+import SellerRoute from "../SellerRoute/SellerRoute";
+import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 
- const router = createBrowserRouter([
+const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Main></Main>,
     errorElement: <DisplayError></DisplayError>,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home></Home>
       },
       {
-        path: '/home',
+        path: "/home",
         element: <Home></Home>
       },
       {
-        path: '*',
+        path: "*",
         element: <About></About>
       },
       {
-        path: '/blog',
+        path: "/blog",
         element: <Blog></Blog>
       },
       {
-        path: '/category/:id',
-        element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
-    },
-    {
-      path: '/addProduct',
-      element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>,
-      loader: () => fetch('http://localhost:5000/products')
-    },
+        path: "/category/:id",
+        element: (
+          <PrivateRoute>
+            <CategoryProducts></CategoryProducts>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/category/${params.id}`)
+      },
       {
-        path: '/login',
+        path: "/login",
         element: <Login></Login>
       },
       {
-        path: '/signup',
+        path: "/signup",
         element: <SignUp></SignUp>
-      }
-    ]
+      },
+    ],
   },
   {
-    path: '/dashboard',
-    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     errorElement: <DisplayError></DisplayError>,
     children: [
       {
-        path: '/dashboard',
-        element: <MyOrders></MyOrders> 
+        path: "/dashboard",
+        element: <MyOrders></MyOrders>
       },
       {
-        path: '/dashboard/wishlist',
-        element: <MyWishList></MyWishList> 
+        path: "/dashboard/wishlist",
+        element: <MyWishList></MyWishList>
       },
       {
-        path: '/dashboard/allusers',
-        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+        path: "/dashboard/addProduct",
+        element: (
+          <SellerRoute>
+             <AddProduct></AddProduct>
+          </SellerRoute>
+        )
       },
       {
-        path: '/dashboard/users/sellers',
-        element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
+        path: "/dashboard/myProducts",
+        element: (
+          <SellerRoute>
+             <MyProducts></MyProducts>
+          </SellerRoute>)
       },
       {
-        path: '/dashboard/users/buyers',
-        element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
+        path: "/dashboard/allusers",
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
       },
       {
-        path: '/dashboard',
+        path: "/dashboard/users/sellers",
+        element: (
+          <AdminRoute>
+            <AllSeller></AllSeller>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/users/buyers",
+        element: (
+          <AdminRoute>
+            <AllBuyers></AllBuyers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard",
         element: <Payment></Payment>
-      },
-    ]
-  }
-
-])
+      }
+    ],
+  },
+]);
 
 export default router;

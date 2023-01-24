@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { BeakerIcon } from '@heroicons/react/24/solid';
+
 
 const ProductsCard = ({ product, setModalContent }) => {
   const {
-    _id,
     name,
+    seller_name,
+    seller_quality,
     published_date,
     img,
     location,
@@ -24,9 +27,21 @@ const ProductsCard = ({ product, setModalContent }) => {
       <figure className="mx-4 mt-4 lg:h-[12rem]">
         <img src={img} alt="laptop" className="rounded" />
       </figure>
-      <div className="card-body items-center text-center ">
+      <div className="card-body items-center text-center">
+
         <h2 className="card-title text-2xl text-accent">{name}</h2>
-        <p>{description}</p>
+        <div className="flex justify-center items-center">
+            <h6 className="text-xl text-secondary">{seller_name}</h6>
+            <div className='ml-1 '>
+            {seller_quality === 'verified' ? 
+                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-blue-600">
+                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+               </svg>
+                : ''
+              }
+            </div>
+        </div>
+       <div><p>{description}</p></div>
         <div className="flex justify-between text-[0.5rem] md:text-[0.8rem] mt-3">
           <div className="mr-5 bg-base-200 p-5">
             <p>
@@ -55,7 +70,8 @@ const ProductsCard = ({ product, setModalContent }) => {
             </p>
           </div>
         </div>
-        <div className="card-actions items-center justify-center mt-3 bg-accent  py-3 rounded-lg md:w-full">
+       
+        <div className="card-actions items-center justify-center mt-3 bg-accent py-3 rounded-lg md:w-full">
           <div className="md:mr-2">
             <p className="text-xl font-semibold rounded-md py-1 text-white">
               Price: {resale_price}

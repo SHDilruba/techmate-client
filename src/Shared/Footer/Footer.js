@@ -3,7 +3,7 @@ import logo2 from "../../assets/icons/logo2.jpeg";
 
 const Footer = () => {
   return (
-    <div className='md:flex justify-between text-center pb-5 md:py-20  md:px-40 bg-base-200 mt-20 mx-auto'>
+    <div className='md:flex justify-between text-center pb-5 md:py-20  md:px-40 bg-base-200 mx-auto'>
     <div className='invisible md:visible'>
        <img className="w-16 h-10 rounded-md p-0.5 bg-gradient-to-r from-secondary to-accent shadow-4xl " src={logo2} alt="" />
         <h2 className='text-2xl text-accent text-center'>TechMate</h2>
