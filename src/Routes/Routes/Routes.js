@@ -19,6 +19,7 @@ import AllSeller from "../../Pages/Dashboard/AllSeller/AllSellers";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import SellerRoute from "../SellerRoute/SellerRoute";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
+import AdsProductDetail from "../../Pages/AdsProductDetail/AdsProductDetail";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,16 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/category/${params.id}`)
+      },
+      {
+        path: "/productDetail/:id",
+        element: (
+          <PrivateRoute>
+            <AdsProductDetail></AdsProductDetail>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/products/${params.id}`)
       },
       {
         path: "/login",
@@ -127,3 +138,4 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
+

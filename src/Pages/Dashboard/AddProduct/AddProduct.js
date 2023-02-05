@@ -3,11 +3,11 @@ import useTitle from "../../../Shared/hooks/useTitle";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import useVerifySeller from '../../../Shared/hooks/useVerifySeller';
-import Footer from "../../../Shared/Footer/Footer";
 
 const AddProduct = () => {
   useTitle('addProduct');
   const {user} = useContext(AuthContext);
+  // console.log(user)
   const [isVerifiedSeller] = useVerifySeller(user?.email) 
 
   var showDate = new Date();
@@ -72,18 +72,18 @@ const AddProduct = () => {
   };
 
   return (
-    <div id="add-product" className=" pt-6 pb-3 container mx-auto">
-      <h1 className="text-4xl text-accent text-center">Add Your Product</h1>
-      <div className="review-form pt-5 mt-5 container text-center w-3/5 mx-auto">
+    <div className=" pt-6 pb-20">
+      <h1 className="text-4xl text-accent-focus font-serif text-center">Add Your Product</h1>
+      <div className=" pt-5 mt-5  w-3/6 container text-center mx-auto">
         <form
           onSubmit={handleAddProduct}
-          className="pt-10 pb-12 w-full bg-base-300 rounded-lg"
+          className="pt-10 pb-12 w-full bg-base-300 rounded-lg shadow-xl"
         >
-          <div className="mx-auto">
+          <div className="shadow-xl bg-white">
             <input
               name="seller_name"
               type="text"
-              className="form-control mx-auto text-center text-2xl w-2/3 text-secondary pt-2"
+              className="form-control mx-auto text-center text-2xl w-2/3 text-secondary-focus pt-2"
               placeholder="seller Name" defaultValue={user?.displayName} readOnly
             />           
               { isVerifiedSeller &&
@@ -91,21 +91,21 @@ const AddProduct = () => {
                    name="seller_quality"
                    type="text"
                    className="form-control mx-auto w-2/3 text-center text-[1rem] text-accent pb-1"
-                   defaultValue= 'verified' readOnly
+                   defaultValue='verified' readOnly
                    />
                   }      
               <input
                 name="email"
                 type="email"
-                className="form-control text-center w-2/3 mx-auto bg-accent text-white py-1"
+                className="form-control text-center w-full mx-auto bg-accent text-white py-2 mb-5"
                 placeholder="email" defaultValue={user?.email} readOnly
                 />
           </div>   
-          <div className="mb-5 mt-8">
+          <div className="mb-5 mt-8t">
             <input
               name="category_id"
               type="text"
-              className="form-control text-center py-3 w-3/4 mx-auto"
+              className="form-control text-center py-3 w-4/5 mx-auto"
               placeholder="category_id"
             />
           </div>
@@ -113,7 +113,7 @@ const AddProduct = () => {
             <input
               name="img"
               type="url"
-              className="form-control text-center py-3 w-3/4 mx-auto"
+              className="form-control text-center py-3 w-4/5 mx-auto"
               placeholder="photo URL"
             />
           </div>
@@ -121,23 +121,15 @@ const AddProduct = () => {
             <input
               name="name"
               type="text"
-              className="form-control text-center py-3 w-3/4 mx-auto"
+              className="form-control text-center py-3 w-4/5 mx-auto"
               placeholder="product title"
-            />
-          </div>
-          <div className="mb-5 ">
-            <input
-              name="description"
-              type="text"
-              className="form-control text-center py-3 w-3/4 mx-auto"
-              placeholder="description"
             />
           </div>
           <div className="mb-5">
             <input
               name="used"
               type="text"
-              className="form-control text-center py-3 w-3/4 mx-auto"
+              className="form-control text-center py-3 w-4/5 mx-auto"
               placeholder="used"
             />
           </div>
@@ -145,7 +137,7 @@ const AddProduct = () => {
             <input
               name="condition"
               type="text"
-              className="form-control text-center py-3 w-3/4 mx-auto"
+              className="form-control text-center py-3 w-4/5 mx-auto"
               placeholder="condition"
             />
           </div>
@@ -153,7 +145,7 @@ const AddProduct = () => {
             <input
               name="location"
               type="text"
-              className="form-control text-center py-3 w-3/4 mx-auto"
+              className="form-control text-center py-3 w-4/5 mx-auto"
               placeholder="location"
             />
           </div>
@@ -161,7 +153,7 @@ const AddProduct = () => {
             <input
               name="mobile"
               type="text"
-              className="form-control text-center py-3 w-3/4 mx-auto"
+              className="form-control text-center py-3 w-4/5 mx-auto"
               placeholder="mobile no"
             />
           </div>
@@ -169,7 +161,7 @@ const AddProduct = () => {
             <input
               name="resale_price"
               type="text"
-              className="form-control text-center py-3 w-3/4 mx-auto"
+              className="form-control text-center py-3 w-4/5 mx-auto"
               placeholder="resale_price"
             />
           </div>
@@ -177,7 +169,7 @@ const AddProduct = () => {
             <input
               name="original_price"
               type="text"
-              className="form-control text-center py-3 w-3/4 mx-auto"
+              className="form-control text-center py-3 w-4/5 mx-auto"
               placeholder="original-price"
             />
           </div>
@@ -185,9 +177,17 @@ const AddProduct = () => {
             <input
               name="date"
               type="text"
-              className="form-control text-center py-3 w-3/4 mx-auto mb-3"
+              className="form-control text-center py-3 w-4/5 mx-auto mb-3"
               value={displayTodaysDate}
               readOnly
+            />
+          </div>
+          <div className="mb-5 ">
+            <input
+              name="description"
+              type="text"
+              className="form-control text-center h-[6rem] w-4/5 mx-auto"
+              placeholder="description"
             />
           </div>
           <button
@@ -198,7 +198,6 @@ const AddProduct = () => {
           </button>
         </form>
       </div>
-      <Footer></Footer>
    </div>
   );
 };

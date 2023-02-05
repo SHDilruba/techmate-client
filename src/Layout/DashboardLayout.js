@@ -10,6 +10,7 @@ const DashboardLayout = () => {
   const {user} = useContext(AuthContext);
   const [isAdmin] = useAdmin(user?.email)
   const [isSeller] = useSeller(user?.email)
+
   return (
     <div>
        <Navbar></Navbar>
@@ -20,7 +21,7 @@ const DashboardLayout = () => {
   </div> 
   <div className="drawer-side">
     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label> 
-    <ul className="menu  p-4 w-80 bg-accent text-white text-xl pt-8">
+    <ul className="menu p-4 w-80 bg-accent text-white text-xl pt-8">
       <li><Link to="/dashboard">My Orders</Link></li>
       <li><Link to="/dashboard/wishlist">My Wishlist</Link></li>
       {

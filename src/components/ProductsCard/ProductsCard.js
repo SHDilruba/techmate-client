@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { BeakerIcon } from '@heroicons/react/24/solid';
-
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const ProductsCard = ({ product, setModalContent }) => {
   const {
@@ -23,15 +23,18 @@ const ProductsCard = ({ product, setModalContent }) => {
 };
 
   return (
-    <div className="card h-full w-full md:w-[27rem] bg-base-100 shadow-xl md:mb-0 mx-auto">
-      <figure className="mx-4 mt-4 lg:h-[12rem]">
-        <img src={img} alt="laptop" className="rounded" />
-      </figure>
+    <div className="card relative h-full w-full md:w-[28rem] bg-base-100 shadow-xl md:mb-0 mx-auto">
+      <PhotoProvider>
+        <PhotoView src={img}>
+          <figure className="lg:h-[16rem]">
+              <img src={img} alt="laptop" className="rounded" />
+          </figure>
+        </PhotoView>
+     </PhotoProvider>      
       <div className="card-body items-center text-center">
-
-        <h2 className="card-title text-2xl text-accent">{name}</h2>
+        <h2 className="card-title text-[1.4rem] text-accent-focus">{name}</h2>
         <div className="flex justify-center items-center">
-            <h6 className="text-xl text-secondary">{seller_name}</h6>
+            <h6 className="text-[1.2rem] text-secondary">{seller_name}</h6>
             <div className='ml-1 '>
             {seller_quality === 'verified' ? 
                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-blue-600">
@@ -41,9 +44,9 @@ const ProductsCard = ({ product, setModalContent }) => {
               }
             </div>
         </div>
-       <div><p>{description}</p></div>
-        <div className="flex justify-between text-[0.5rem] md:text-[0.8rem] mt-3">
-          <div className="mr-5 bg-base-200 p-5">
+       <div className="px-1 text-[0.9rem]"><p>{description}</p></div>
+        <div className="flex justify-between text-[0.4rem] md:text-[0.7rem] mt-3 mb-[4.5rem] gap-8">
+          <div className="bg-base-200 px-7 py-3">
             <p>
               Year of purchase: <span className="text-secondary">{used}</span>
             </p>
@@ -51,13 +54,13 @@ const ProductsCard = ({ product, setModalContent }) => {
               Condition: <span className="text-secondary">{condition}</span>
             </p>
             <p>
-              Original Price: 
+              Original Price:  
               <span className="text-red-500 line-through">
                 {original_price}
               </span>
             </p>
           </div>
-          <div className="bg-base-200 p-5">
+          <div className="bg-base-200 px-7 py-3">
             <p>
               Published:
               <span className="text-secondary"> {published_date}</span>
@@ -69,28 +72,25 @@ const ProductsCard = ({ product, setModalContent }) => {
               mobile: <span className="text-secondary"> {mobile}</span>
             </p>
           </div>
-        </div>
-       
-        <div className="card-actions items-center justify-center mt-3 bg-accent py-3 rounded-lg md:w-full">
-          <div className="md:mr-2">
-            <p className="text-xl font-semibold rounded-md py-1 text-white">
-              Price: {resale_price}
+        </div>       
+        <div className="card-actions absolute bottom-6 justify-center items-center py-2 rounded-lg bg-accent px-6">
+        <div className="bg-white rounded-lg">
+            <p className="text-[1.2rem] font-semibold py-[0.6rem] text-secondary px-5">
+             {resale_price}
             </p>
-          </div>
-           
-          <label
+        </div> 
+        <label
               onClick={()=>changeContent(product)}
               htmlFor="Wishlist-modal"
-              className="btn w-1/4 bg-base-300 hover:bg-secondary hover:text-white rounded text-secondary mr-2"
-            > Add to Wishlist
+              className="btn bg-secondary text-white hover:bg-white hover:text-secondary ml-1 border-2 border-white hover:border-white"
+            >Wishlist
           </label>
-          <label
+        <label
             onClick={()=>changeContent(product)}
             htmlFor="booking-modal"
-            className="btn btn-secondary bg-gradient-to-l from-secondary to-accent rounded text-white"
+            className="btn btn-secondary ml-1 bg-gradient-to-l from-secondary to-accent rounded-lg text-white border-2 border-white hover:border-2 hover:border-secondary"
           > Book Now 
-          </label> 
-
+         </label> 
         </div>
       </div>
     </div>

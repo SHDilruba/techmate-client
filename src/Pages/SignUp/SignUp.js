@@ -29,16 +29,16 @@ const SignUp = () => {
        const user = result.user;
        console.log(user);
        setSuccess(true); 
-      //  form.reset();
        toast.success('Signed up successfully')
         const userInfo = {
         displayName: data.name,
         role: data.role,
-        quality: data.quality
+        user_quality: data.user_quality
        }
        updateUser(userInfo)
        .then(() =>{
-           saveUser(data.name, data.email, data.role, data.quality);
+           saveUser(data.name, data.email, data.role, data.user_quality);
+           
        })
        .catch(err => console.log(err));
     })
@@ -49,8 +49,8 @@ const SignUp = () => {
     })
   };
 
-  const saveUser = (name, email, role, quality) =>{
-      const user = {name, email, role, quality};
+  const saveUser = (name, email, role) =>{
+      const user = {name, email, role};
       fetch('http://localhost:5000/users', {
          method: 'POST',
          headers: {
@@ -65,63 +65,63 @@ const SignUp = () => {
   }
 
   return (
-    <div className='h-full flex justify-center items-center mt-10 w-96 mx-auto'>
-       <div className='w-full px-10  pb-10 shadow-lg rounded-lg bg-accent pt-10'>
-          <h2 className='text-4xl text-center mb-5 text-secondary'>Sign Up</h2>
+    <div className='h-full flex justify-center items-center md:mt-8 sm:w-[36rem] mx-auto sm:mb-8 lg:mb-28'>
+       <div className='w-full px-10  pb-10 shadow-lg rounded-lg bg-gradient-to-r from-secondary to-accent pt-10'>
+          <h2 className='text-4xl text-center mb-5 text-white'>Sign Up</h2>
 
           <form onSubmit={handleSubmit(handleSignUp)}>
-            <div className="form-control  max-w-xs w-full">
+            <div className="form-control w-full">
                 <label className="label">
-                    <span className="label-text">Name</span>
+                    <span className="label-text text-white">Name</span>
                 </label>
                 <input type="name" {...register("name", {
                    required: 'Name is Required'
                 })}
-                className="input input-bordered w-full max-w-xs" />
+                className="input input-bordered w-full" />
                   {errors.name && <p className='text-red-600'>{errors.name?.message}</p>}
             </div>
-            <div className="form-control  max-w-xs w-full">
-                <label className="label">
-                    <span className="label-text">User Role</span>
-                </label>
-                <select
-               {...register("role")}
-               className="input input-bordered w-full max-w-xs">              
-                <option>User</option>
-                <option>Seller</option>
-                </select>
-            </div>
 
-            <div className="form-control w-full max-w-xs">
+            <div className="form-control w-full">
                 <label className="label">
-                    <span className="label-text">Email</span>
+                    <span className="label-text text-white">Email</span>
                 </label>
                 <input type="email" {...register("email", {
                    required: 'Email Address is required'
                 })}
-                className="input input-bordered w-full max-w-xs" />
+                className="input input-bordered w-full" />
                 {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
             </div>
 
-            <div className="form-control w-full max-w-xs">
+            <div className="form-control w-full">
                 <label className="label">
-                    <span className="label-text">Password</span>
+                    <span className="label-text text-white">Password</span>
                 </label>
                 <input type="password" {...register("password",{
                     required: 'Password is required',
                     minLength: { value: 6, message: 'Password must be 6 characters long'},
                     pattern: {value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'Password must have uppercase, number and special character'}
                 })} 
-                className="input input-bordered w-full max-w-xs mb-5"/>
+                className="input input-bordered w-full"/>
                 {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
             </div>
+
+            <div className="form-control w-full">
+                <label className="label">
+                    <span className="label-text text-white">Want to be a seller/buyer? Please write in lowercase</span>
+                </label>
+                <input type="text" {...register("role", {
+                    required: 'Please fill this option',
+                })}
+                className="input input-bordered w-full mb-7" />
+                 {errors.role && <p className='text-red-600'>{errors.role?.message}</p>}
+            </div>
             
-              <button className='btn btn-secondary bg-gradient-to-r from-secondary to-accent w-full' type="submit"> {loading ? <Loading></ Loading>:'Sign Up'
+              <button className='btn btn-accent text-white w-full' type="submit"> {loading ? <Loading></ Loading>:'Sign Up'
               }  </button>
               {signUpError && <p className='text-red-600'>{signUpError}</p>}
           </form>
 
-          <p className='my-2'><small>Allready have an account?</small> <Link className='text-secondary' to="/login">Please Login </Link></p> 
+          <p className='my-2'><small className='text-white'>Allready have an account?</small> <Link className='text-accent' to="/login">Please Login </Link></p> 
           <div className="divider mt-6">OR</div>
          <button className='btn btn-Ghost outline text-black bg-base-300 w-full mb-6'>CONTINUE WITH GOOGLE </button>
       </div>
