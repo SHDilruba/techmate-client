@@ -32,9 +32,10 @@ const Advertisement = () => {
             </div>
           </div>
         </div>
-      ) : (
-        ""
-      )}
+      ) 
+      : 
+      ( "" )
+      }
     </>
   );
 };

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
-import MyWishListCard from '../../../components/MyWishListCard/MyWishListCard';
+import MyWishListCard from '../../../components/MyWishListTable/MyWishListTable';
 import BookingModal from '../../../components/BookingModal/BookingModal';
 import { AuthContext } from '../../../contexts/AuthProvider';
 

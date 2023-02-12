@@ -2,8 +2,9 @@ import React from 'react';
 import { toast } from 'react-hot-toast';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import DeleteButton from '../DeleteButton/DeleteButton';
 
-const MyProductCards = ({product, i, myProducts, setMyProducts, refetch}) => {
+const MyProductCards = ({product, i, refetch}) => {
 
  const handleDelete = id =>{
   const proceed = window.confirm('Are you sure to cancel this product?')
@@ -18,8 +19,6 @@ const MyProductCards = ({product, i, myProducts, setMyProducts, refetch}) => {
   .then(data => {
     console.log(data);
     alert('deleted successfully')
-    const remaining = myProducts.filter(product => product._id !== id);
-    setMyProducts(remaining);
     refetch();
   })
  }
@@ -36,7 +35,7 @@ const handleMakeAdvertise = id =>{
    .then (data => {
     console.log(data);
        if(data.modifiedCount > 0){
-         toast.success('Maked Advertise successfully')
+         toast.success('Successfully added in the Advertisement')
          refetch();
        }
    })
@@ -44,8 +43,8 @@ const handleMakeAdvertise = id =>{
 
  return (  
       <>
-       <th className='bg-gradient-to-l from-secondary to-accent text-center'>{i+1}</th>
-       <td className='bg-gradient-to-l from-secondary to-accent'>                    
+       <th className='hidden md:block'>{i+1}</th>
+       <td className='border-2 border-secondary'>                    
             { product?.img &&
                 <PhotoProvider>
                     <PhotoView src={product?.img}>
@@ -54,27 +53,33 @@ const handleMakeAdvertise = id =>{
                 </PhotoProvider>
              }
        </td>
-       <td className='bg-gradient-to-l from-secondary to-accent text-center'>{product.name}</td>
-       <td className='bg-gradient-to-l from-secondary to-accent text-center'>{product.resale_price}</td>
-       <td className='bg-gradient-to-l from-secondary to-accent text-center'>
-            {
-                product?.advertisement === 'done' ? 'Done' :              
+       <td className='border-2 border-secondary text-center'>{product.name}</td>
+       <td className='border-2 border-secondary text-center'>{product.resale_price}</td>
+       <td className='border-2 border-secondary text-center'>
+      {product?.booking ? 'Booked'
+        : 
+        <>
+         {
+                product?.advertisement === 'done' ? <p className='text-accent'>Added</p> :              
                  <button
                      onClick={() => handleMakeAdvertise(product._id)}
-                     className="btn btn-xs outline bg-white rounded-xl text-black hover:text-white"
+                     className="btn btn-xs bg-accent rounded-xl text-white hover:bg-secondary"
                     > Add
                   </button>
             }
+        </>
+        }           
        </td>
-       <td className='bg-gradient-to-l from-secondary to-accent text-center'>
+       <td className='border-2 border-secondary text-center'>
              { product && 
-                  <button 
-                      onClick={() => handleDelete(product._id)} className='btn btn-xs outline bg-red-600 hover:bg-white hover:text-red-500'>
-                      Delete
-                  </button>
+                 <div onClick={() => handleDelete(product._id)}>
+                    <DeleteButton>
+                        Delete
+                    </DeleteButton>
+                 </div>
              }
        </td>
-  </>
+    </>
   );
 };
 

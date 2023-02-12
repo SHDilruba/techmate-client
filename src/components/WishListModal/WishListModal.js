@@ -13,6 +13,7 @@ const WishListModal = ({children}) => {
         const user_name = form.user_name.value;
         const email = form.email.value;
         const resale_price = form.resale_price.value;
+        const booking = form.booking.value;
     
    const wishlist = {
           name,
@@ -20,6 +21,7 @@ const WishListModal = ({children}) => {
           user_name, 
           email,
           resale_price,
+          booking
         }
 
           fetch('http://localhost:5000/wishlist', {
@@ -53,6 +55,7 @@ const WishListModal = ({children}) => {
                   <input name="name" type="text" defaultValue={children.name} className="input w-full input-bordered outline" disabled placeholder="Product Name" />
                   <input name="img" type="url" className="input w-full input-bordered outline" defaultValue={children.img} />
                   <input name="resale_price" type="text" defaultValue={children.resale_price} className="input w-full outline bordered" disabled placeholder="Product Price" />
+                  <input name="booking" type="text" defaultValue={children.booking} className="input w-full outline bordered hidden" disabled placeholder="booking status" />
                   <input className='btn btn-secondary w-full outline mt-3' type="submit" value="Confirm to add to WishList" />
               </form>
               <div className="modal-action">

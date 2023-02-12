@@ -19,7 +19,9 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || '/dashboard';
+
+  // const from = location.state?.from?.pathname || '/';
   if(token){
     navigate(from, {replace: true});
   }
@@ -53,11 +55,11 @@ const Login = () => {
      }
 
   return (
-   <div className='sm:flex lg:gap-16 justify-center items-center mt-10 sm:mb-5 lg:mb-28'>
+   <div className='sm:flex lg:gap-14 justify-center items-center sm:mb-5 lg:mb-28'>
       <img className='w-2/4 h-full hidden sm:block ' src={logImg} alt="" /> 
     <div className='bg-gradient-to-r from-secondary to-accent rounded-lg'>
        <div className='w-full md:w-96 px-10 pb-10 shadow-lg rounded-lg'>
-          <h2 className='text-4xl text-center my-6  text-white'>Log in</h2>
+          <h2 className='text-4xl text-center mt-8 mb-2 text-white'>Log in</h2>
 
           <form onSubmit={handleSubmit(handleLogin)}>
             <div className="form-control w-full">
@@ -100,7 +102,7 @@ const Login = () => {
               type="submit" />
               { loginError && <p className='text-red-600'>{loginError}</p>}
           </form>
-          <p className='my-2'><small className='text-white mr-1'>New to TecMate?</small> <Link to='/signup' className=' text-accent outline px-1'>create new account </Link></p> 
+          <p className='mb-2 mt-4'><small className='text-white mr-1'>New to TecMate?</small> <Link to='/signup' className=' text-accent outline px-1'>create new account </Link></p> 
          <div className="divider my-6">OR</div>
          <button onClick={handleGoogleSignIn} className='btn btn-outline w-full  text-white'>CONTINUE WITH GOOGLE </button>
       </div>

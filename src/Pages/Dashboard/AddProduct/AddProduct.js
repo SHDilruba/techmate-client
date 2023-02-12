@@ -7,7 +7,6 @@ import useVerifySeller from '../../../Shared/hooks/useVerifySeller';
 const AddProduct = () => {
   useTitle('addProduct');
   const {user} = useContext(AuthContext);
-  // console.log(user)
   const [isVerifiedSeller] = useVerifySeller(user?.email) 
 
   var showDate = new Date();
@@ -74,16 +73,16 @@ const AddProduct = () => {
   return (
     <div className=" pt-6 pb-20">
       <h1 className="text-4xl text-accent-focus font-serif text-center">Add Your Product</h1>
-      <div className=" pt-5 mt-5  w-3/6 container text-center mx-auto">
+      <div className="pt-5 mt-5  md:w-3/6 container text-center mx-auto">
         <form
           onSubmit={handleAddProduct}
           className="pt-10 pb-12 w-full bg-base-300 rounded-lg shadow-xl"
         >
-          <div className="shadow-xl bg-white">
+          <div className="shadow-xl bg-white ">
             <input
               name="seller_name"
               type="text"
-              className="form-control mx-auto text-center text-2xl w-2/3 text-secondary-focus pt-2"
+              className="form-control mx-auto text-center text-2xl w-2/3 text-secondary pt-2"
               placeholder="seller Name" defaultValue={user?.displayName} readOnly
             />           
               { isVerifiedSeller &&
@@ -97,7 +96,7 @@ const AddProduct = () => {
               <input
                 name="email"
                 type="email"
-                className="form-control text-center w-full mx-auto bg-accent text-white py-2 mb-5"
+                className="form-control text-center w-full mx-auto bg-gradient-to-l from-secondary to-accent text-white py-2 mb-5"
                 placeholder="email" defaultValue={user?.email} readOnly
                 />
           </div>   
@@ -191,7 +190,7 @@ const AddProduct = () => {
             />
           </div>
           <button
-            className="btn btn-accent w-2/4 mt-3 mb-4 py-2 text-white hover:bg-secondary"
+            className="btn bg-gradient-to-l from-secondary to-accent w-2/4 mt-3 mb-4 py-2 text-white hover:bg-secondary"
             type="submit"
           >
             Add Product

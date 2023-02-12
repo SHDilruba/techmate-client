@@ -1,29 +1,37 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import BookingModal from '../../components/BookingModal/BookingModal';
-import ProductsCard from '../../components/ProductsCard/ProductsCard';
+import Cards from '../../components/Cards/Cards';
 import WishListModal from '../../components/WishListModal/WishListModal';
 
 const CategoryProducts = () => {
     const categoryProducts = useLoaderData();
     const [modalContent, setModalContent] = useState([]);
 
+     const [isBooked, setIsBooked] = useState(false);
+
+    const refetch = useQuery;
+
     return (
-          <div className='mt-7 mb-28 md:mx-40'>
-              <h2 className='text-4xl mb-8 text-center font-sans text-accent-focus'>This Category has {categoryProducts.length} {categoryProducts.length > 1 ? 'items available' : 'item available'}</h2>
-              <div className='grid grid-cols-1 lg:grid-cols-2 mx-auto lg:mx-10 px-5 py-6 rounded-xl gap-10'>
+          <div className='mt-7 mb-10 md:mb-28 md:mx-40'>
+              <h2 className='text-3xl md:text-[4xl] mb-8 text-center font-sans text-accent-focus'>This Category has {categoryProducts.length} {categoryProducts.length > 1 ? 'items available' : 'item available'}</h2>
+              <div className='grid grid-cols-1 lg:grid-cols-2 mx-auto lg:mx-10 rounded-xl gap-10'>
             {
-                categoryProducts.map(product => <ProductsCard
-                    product={product}
+                categoryProducts.map(product => <Cards
+                    children={product}
                     key={product._id}
                     setModalContent={setModalContent}
-                ></ProductsCard> )
+                ></Cards> )
             }
            </div>
                {
                 modalContent.map(content =><BookingModal 
                     key={content._id} 
                     children={content}
+                    setIsBooked={setIsBooked}
+                    isBooked={isBooked}
+                    refetch={refetch}
                     ></BookingModal>)
                }
                 {

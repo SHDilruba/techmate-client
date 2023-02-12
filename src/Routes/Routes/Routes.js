@@ -51,7 +51,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.id}`)
+          fetch(`http://localhost:5000/products/category/${params.id}`)
       },
       {
         path: "/productDetail/:id",
@@ -130,9 +130,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard",
-        element: <Payment></Payment>
-      }
+        path: '/dashboard/payment/:id',
+        element: <Payment></Payment>,
+        loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+      },
     ],
   },
 ]);

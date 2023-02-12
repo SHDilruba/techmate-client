@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useTitle from '../../../Shared/hooks/useTitle';
 import { useQuery } from '@tanstack/react-query';
@@ -26,29 +26,31 @@ const MyProducts = () => {
   });
 
   return (
-      <div className=' mb-20'>
+      <div className='mb-20'>
          <h3 className="mb-8 text-4xl text-accent my-10 ml-5">Your {products.length} {products.length > 1 ? 'Available Products' : 'Available product'}</h3>
          <div className="overflow-x-auto w-full">
          <div>
          <table className="table w-full">
            <thead>
                 <tr>
-                  <th className='text-secondary text-center text-[0.6rem] md:text-[1rem]' >Quantity</th>
-                  <th className='text-secondary text-center text-[0.6rem] md:text-[1rem]'>Image</th>
-                  <th className='text-secondary text-center text-[0.6rem] md:text-[1rem]'>Name</th>
-                  <th className='text-secondary text-center text-[0.6rem] md:text-[1rem]'>Price</th>
-                  <th className='text-secondary text-center text-[0.6rem] md:text-[1rem]'>Advertisement</th>
-                  <th className='text-secondary text-center text-[0.6rem] md:text-[1rem]'>Delete</th>
+                  <th className='bg-gradient-to-l from-secondary to-accent text-white text-center text-[0.4rem] md:text-[1rem] hidden md:block' >Quantity</th>
+                  <th className='bg-gradient-to-l from-secondary to-accent text-white text-center text-[0.4rem] md:text-[1rem]'>Image</th>
+                  <th className='bg-gradient-to-l from-secondary to-accent text-white text-center text-[0.4rem] md:text-[1rem]'>Name</th>
+                  <th className='bg-gradient-to-l from-secondary to-accent text-white text-center text-[0.4rem] md:text-[1rem]'>Price</th>
+                  <th className='bg-gradient-to-l from-secondary to-accent text-white text-center text-[0.4rem] md:text-[1rem]'>Advertisement</th>
+                  <th className='bg-gradient-to-l from-secondary to-accent text-white text-center text-[0.4rem] md:text-[1rem]'>Delete</th>
               </tr>
             </thead>
-            <tbody className='text-white'>  
+            <tbody>  
                     {
                       products &&
                           products?.map((product, i) => 
                            <>
-                              <tr>
+                              <tr
+                              className='border-2 border-secondary text-center text-[0.4rem] md:text-[1.1rem]'>
                                 <MyProductCards 
-                                  key={product._id}
+                                    key={product._id}
+                                    i={i}
                                     product={product}
                                     myProducts={myProducts}
                                     setMyProducts={setMyProducts}
