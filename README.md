@@ -19,6 +19,6 @@
 ## Resolved an error that wasted my time:
 + I found this error after deploying the server side in vercel.com. I tried to resolve this error, by installing Chrome extensions, using 'no-cors' mode, using 'Access-Control-Allow-Origin' in the header, canceling, and re-installing cors, and clearing cookies & data from the browser, which suggestions were found in the many resources. But the result was zero. 
 
-+Then I tried with the localhost-5000 again for clearing my confusion because before vercel deployment I didn't find this error. After running the code the terminal suggested me to adding a new ObjectId instead of ObjectId like this: const filter = { _id: new ObjectId(id) } which was: const filter = { _id: ObjectId(id) }. That was helpful! 
++ Then I tried with the localhost-5000 again for clearing my confusion because before vercel deployment I didn't find this error. After running the code the terminal suggested me to adding a new ObjectId instead of ObjectId like this: const filter = { _id: new ObjectId(id) } which was: const filter = { _id: ObjectId(id) }. That was helpful! 
 
-## Access to fetch at '...' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
++ error: << Access to fetch at '...' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.>>
