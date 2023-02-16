@@ -1,20 +1,25 @@
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 import DeleteButton from '../../../components/DeleteButton/DeleteButton';
+import Loading from '../../../Shared/Loading/Loading';
 
-const AllUsers = () => {
+const MakeAdmin = () => {
 
-  const {data: users = [], refetch} = useQuery({
+  const {data: users = [], refetch, isLoading} = useQuery({
      queryKey: ['users'],
      queryFn: async() =>{
-      const res = await fetch('http://localhost:5000/users');
+      const res = await fetch('https://techmate-server2.vercel.app/users');
       const data = await res.json();
       return data;
      }
   });
 
+  if(isLoading){
+    <Loading></Loading>
+  }
+
 const handleMakeAdmin = id =>{
-  fetch(`http://localhost:5000/users/admin/${id}`,{
+  fetch(`https://techmate-server2.vercel.app/users/admin/${id}`,{
       method: 'PUT',
       headers: {
          authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -30,7 +35,7 @@ const handleMakeAdmin = id =>{
 };
 
 const handleMakeSeller = id =>{
-  fetch(`http://localhost:5000/users/seller/${id}`,{
+  fetch(`https://techmate-server2.vercel.app/users/seller/${id}`,{
       method: 'PUT',
       headers: {
          authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -49,7 +54,7 @@ const handleMakeSeller = id =>{
 const handleDelete = id =>{
   const proceed = window.confirm('Are you sure to cancel this user?')
   if(proceed){
-    fetch(`http://localhost:5000/users/${id}`,{
+    fetch(`https://techmate-server2.vercel.app/users/${id}`,{
     method: 'DELETE',
     headers: {
       authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -118,4 +123,5 @@ const handleDelete = id =>{
   );
 };
 
-export default AllUsers;
+export default MakeAdmin;
+

@@ -8,7 +8,7 @@ import DeleteButton from '../../../components/DeleteButton/DeleteButton';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+    const url = `https://techmate-server2.vercel.app/bookings?email=${user?.email}`;
    
     const { data: bookings = [], refetch } = useQuery({
          queryKey: ['bookings', user?.email],
@@ -26,7 +26,7 @@ const MyOrders = () => {
     const handleDelete = id =>{
       const proceed = window.confirm('Are you sure to cancel this product?')
       if(proceed){
-        fetch(`http://localhost:5000/bookings/${id}`,{
+        fetch(`https://techmate-server2.vercel.app/bookings/${id}`,{
         method: 'DELETE',
         headers: {
           authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -72,7 +72,7 @@ const MyOrders = () => {
                  <td className='border-2 border-secondary' >
                    {
                       booking.resale_price && !booking.paid && <Link to={`/dashboard/payment/${booking._id}`}>
-                         <button 
+                         <button
                              className='btn btn-xs btn-accent outline rounded-lg text-white text-[0.4rem] md:text-[0.8rem]'
                         >Pay Now</button>
                       </Link>

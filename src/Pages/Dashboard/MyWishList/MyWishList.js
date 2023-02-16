@@ -1,16 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import MyWishListCard from '../../../components/MyWishListTable/MyWishListTable';
 import BookingModal from '../../../components/BookingModal/BookingModal';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import MyWishListTable from '../../../components/MyWishListTable/MyWishListTable';
 
 const MyWishList = () => {
     const { user } = useContext(AuthContext);
     
     const [modalContent, setModalContent] = useState([]);
     
-    const url = `http://localhost:5000/wishlist?email=${user?.email}`;
+    const url = `https://techmate-server2.vercel.app/wishlist?email=${user?.email}`;
 
     const { data: wishlist = [], refetch } = useQuery({
          queryKey: ['wishlist', user?.email],
@@ -44,13 +45,13 @@ const MyWishList = () => {
              wishlist &&
              wishlist?.map((product) => <>
               <tr>
-              <MyWishListCard
+              <MyWishListTable
              key={product._id}
              product={product}
              wishlist={wishlist}
              refetch={refetch}
              setModalContent={setModalContent}
-       ></MyWishListCard>
+       ></MyWishListTable>
               </tr>
              </>
        

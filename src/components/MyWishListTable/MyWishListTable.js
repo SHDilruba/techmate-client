@@ -10,25 +10,10 @@ const MyWishListTable = ({ product, setModalContent, refetch  }) => {
     setModalContent([product]);
 };
 
-const handleBooking = id =>{
-  fetch(`http://localhost:5000/products/booking/${id}`,{
-      method: 'PUT',
-      headers: {
-         authorization: `bearer ${localStorage.getItem('accessToken')}`
-      }
-  })
-   .then(res => res.json())
-   .then (data => {
-       if(data.modifiedCount > 0){
-         refetch();
-       }
-   })
- };
-
 const handleDelete = id =>{
   const proceed = window.confirm('Are you sure to cancel this product?')
   if(proceed){
-    fetch(`http://localhost:5000/wishlist/${id}`,{
+    fetch(`https://techmate-server2.vercel.app/wishlist/${id}`,{
     method: 'DELETE',
     headers: {
       authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -59,24 +44,14 @@ const handleDelete = id =>{
         <td className='border-2 border-secondary text-[0.4rem] md:text-[1.1rem]'>{name}</td>
        <td className='border-2 border-secondary text-[0.4rem] md:text-[1.3rem]'>{resale_price}</td>
        <td className='border-2 border-secondary'>
-       { booking &&
-           <label
-           className="btn btn-sm ml-1 rounded-lg text-white"
-         > UNAVAILABLE 
-        </label>
-        }
-        {
-          !booking &&
           <label
           onClick={()=> {
             changeContent(product)
-            handleBooking(_id)
           }}
           htmlFor="booking-modal"
           className="btn btn-sm btn-secondary ml-1 bg-gradient-to-l from-secondary to-accent rounded-lg text-white border-white hover:border-2 hover:border-secondary"
         > BOOK NOW 
        </label>
-        }
        </td>
        <td onClick={() => handleDelete(product._id)}
        className='border-2 border-secondary text-[0.4rem] md:text-[1rem]'>

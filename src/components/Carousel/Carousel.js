@@ -5,8 +5,8 @@ import img4 from "../../assets/banner/ban4.jpeg"
 
 const Carousel = () => {
   return (
-  <div id='slider' className='container'>
-         <div className="carousel w-full h-126 mb-28  h-[38rem]">
+  <div id='slider' className='container mx-auto'>
+         <div className="carousel w-full mb-10 md:mb-28 mt-2 md:h-[38rem]">
     <div id="slide1" className="carousel-item relative w-full">
       <img src={img1} className="w-full" />
       <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">

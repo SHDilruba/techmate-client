@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+## Website name: 
+## TechMate 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Live link: https://techmate-9953e.web.app/ 
 
-## Available Scripts
+## Features:
++ This MERN Stack website is about selling used (second-hand) computers with the ability to advertise a product.
 
-In the project directory, you can run:
++ The homepage has a navbar, a carousel banner, a Slider with advertised items, product categories, an FAQ section, and a footer. If the user clicks on a category, they will be redirected to the /category/:id route, where they will see products under that category, which is a private route.
 
-### `npm start`
++ There were Implemented Sign-up, log-out, and Log-in (email/password, google) routes by using firebase authentication. Created an extra field for two options on the Login page. If the user creates a seller account, he will choose the seller option. Otherwise, a normal user will have the user option selected by default. Users logged in by using social media will be considered buyers.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
++ There are three routes in the Dashboard. The dashboard routes will change based on the users. Admin will see: The make Admin, Sellers, and Buyers sections. Sellers will see the: Add Product, and My products sections where can add a new product, delete it, or make advertising. Buyers will see the wishlist and My Orders section. From this section, a buyer can be redirected to the purchase page to pay for any product.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
++ There are integrated stripes as a payment gateway, Used react query, Axios for the API calls, and images hosted in the imgbb. There is also used React photo view for the full-screen view by click.
 
-### `npm test`
++ There was created JWT token, custom hooks, 404 page with an image. Responsive dynamic shared components (card, modal, button) were created using the CSS framework Tailwind (DaisyUI). A blog page about Technology was also created with four short articles that answer four questions.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Resolved an error that wasted my time:
++ I found this error after deploying the server side in vercel.com. I tried to resolve this error, by installing Chrome extensions, using 'no-cors' mode, using 'Access-Control-Allow-Origin' in the header, canceling, and re-installing cors, and clearing cookies & data from the browser, which suggestions were found in the many resources. But the result was zero. 
 
-### `npm run build`
++Then I tried with the localhost-5000 again for clearing my confusion because before vercel deployment I didn't find this error. After running the code the terminal suggested me to adding a new ObjectId instead of ObjectId like this: const filter = { _id: new ObjectId(id) } which was: const filter = { _id: ObjectId(id) }. That was helpful! 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Access to fetch at '...' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.

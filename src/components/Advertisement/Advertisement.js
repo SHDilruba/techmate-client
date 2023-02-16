@@ -2,42 +2,54 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Advertisement = () => {
-  const [advertisement, setAdvertisement] = useState([]);
+  const [advertisementProducts, setAdvertisementProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/advertisementProducts")
+    fetch("https://techmate-server2.vercel.app/advertisementProducts")
       .then((res) => res.json())
-      .then((data) => setAdvertisement(data));
+      .then((data) => setAdvertisementProducts(data));
   }, []);
 
   return (
-   <>
-     {advertisement.length > 0 ? (
-       <div className="my-28 mx-8
-       lg:mx-auto">
-          <h2 className="text-3xl text-center text-secondary-focus font-sans font-semibold mb-7 mx-auto">
-            Advertisement
-          </h2>
-            <div className="bg-secondary rounded-lg py-1 mx-auto px-2 shadow-xl">
-              <div className="carousel carousel-center rounded-box bg-base-300">
-               {advertisement.map((product) => (
-                 <>
-                  <Link to={`/productDetail/${product._id}`}>
-                     <div className="carousel-item h-[14rem] w-[26rem]">
-                        <img className="w-[26rem]" src={product?.img} alt="" />
-                     </div>
-                  </Link>
-                </>
-              ))}
-            </div>
-          </div>
-        </div>
-      ) 
-      : 
-      ( "" )
-      }
-    </>
+    <>
+    {advertisementProducts.length > 0 ?
+     <>
+       <div>    
+         <div className="mx-4 md:mx-auto shadow-xl">
+           <div className="carousel carousel-center rounded-lg mb-[3rem] mt-[6rem] md:my-[8rem]">
+                    {
+                       advertisementProducts?.map((product) =>(
+                      <div key={product._id}>
+                        {
+                         !product.paid &&
+                         <>
+                          <Link to={`/productDetail/${product._id}`}>
+                          <div className="carousel-item h-[14rem] w-[30.3rem] relative"> 
+                             <img className="w-[29.4rem]" src={product?.img} alt="" />
+                           <div className="absolute left-[9rem] top-[6rem] text-white bg-secondary rounded-md">
+                              <p className="text-center ">Advertisement</p>
+                              <button 
+                                  className="btn btn-sm btn-outline bg-black text-[1.1rem] text-white font-semibold"
+                                  >{product.name}
+                           </button>
+                           </div>
+                          </div>
+                       </Link>
+                         </>
+                        }
+                       </div>
+                   ))
+                }
+           </div>
+         </div>
+       </div>
+     </>
+     : 
+    ('')
+     }
+   </>
   );
 };
 
 export default Advertisement;
+

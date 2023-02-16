@@ -9,7 +9,7 @@ const MyProductCards = ({product, i, refetch}) => {
  const handleDelete = id =>{
   const proceed = window.confirm('Are you sure to cancel this product?')
   if(proceed){
-    fetch(`http://localhost:5000/products/${id}`,{
+    fetch(`https://techmate-server2.vercel.app/products/${id}`,{
     method: 'DELETE',
     headers: {
       authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -25,7 +25,7 @@ const MyProductCards = ({product, i, refetch}) => {
  };
 
 const handleMakeAdvertise = id =>{
-  fetch(`http://localhost:5000/products/advertise/${id}`,{
+  fetch(`https://techmate-server2.vercel.app/products/advertise/${id}`,{
       method: 'PUT',
       headers: {
          authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -55,20 +55,19 @@ const handleMakeAdvertise = id =>{
        </td>
        <td className='border-2 border-secondary text-center'>{product.name}</td>
        <td className='border-2 border-secondary text-center'>{product.resale_price}</td>
-       <td className='border-2 border-secondary text-center'>
-      {product?.booking ? 'Booked'
-        : 
-        <>
-         {
-                product?.advertisement === 'done' ? <p className='text-accent'>Added</p> :              
-                 <button
-                     onClick={() => handleMakeAdvertise(product._id)}
-                     className="btn btn-xs bg-accent rounded-xl text-white hover:bg-secondary"
-                    > Add
-                  </button>
-            }
-        </>
-        }           
+       <td className='border-2 border-secondary text-center'> 
+        {
+          product.paid ? 'SOLD': <>
+               {
+            product?.advertisement === 'done' ? <p className='text-accent'>Added</p> :              
+             <button
+                 onClick={() => handleMakeAdvertise(product._id)}
+                 className="btn btn-xs bg-accent rounded-xl text-white hover:bg-secondary"
+                > Add
+              </button>
+        } 
+          </>        
+        }          
        </td>
        <td className='border-2 border-secondary text-center'>
              { product && 

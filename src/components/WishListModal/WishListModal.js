@@ -24,7 +24,7 @@ const WishListModal = ({children}) => {
           booking
         }
 
-          fetch('http://localhost:5000/wishlist', {
+          fetch('https://techmate-server2.vercel.app/wishlist', {
           method: 'POST',
           headers: {
                 'content-type': 'application/json'
@@ -35,7 +35,7 @@ const WishListModal = ({children}) => {
        .then(data => {
           console.log(data);
           if(data.acknowledged){
-            toast.success('Succesfuly added to wishlist');
+            toast.success('Succesfuly added to the wishlist');
           }
           else{
              toast.error(data.message);

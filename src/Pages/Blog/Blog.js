@@ -8,7 +8,7 @@ const Blog = () => {
   const [blogPosts, setBlogPosts] = useState([]);
 
   useEffect(() => {
-      axios.get('http://localhost:5000/blog')
+      axios.get('https://techmate-server2.vercel.app/blog')
       .then((res) => {
         setBlogPosts(res.data)
       })
@@ -19,12 +19,12 @@ const Blog = () => {
   return (
       <div className='mt-8 mb-20'>
         <h2 className='text-5xl mb-10 text-center font-serif text-accent'>Welcome to Blog </h2>
-        <div className='mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto md:mx-20  px-10 bg-accent py-10 rounded-xl'>
+        <div className='mt-10 grid grid-cols-1 gap-12 mx-auto lg:mx-20  p-2 rounded-xl'>
          {
           blogPosts.map(post => <div key={post._id}>
-               <div className="card h-[20rem]  bg-base-100 shadow-xl mx-auto">
-                 <div className="card-body items-center text-center ">
-                    <h2 className=" text-2xl text-accent  mb-2 font-serif"> {post.question}</h2>
+               <div className="card h-[20rem] lg:h-[16rem] border-4 border-accent bg-base-100 shadow-xl mx-auto">
+                 <div className="card-body items-center text-center px-[4rem] ">
+                    <h2 className="text-3xl text-secondary-focus  my-2 font-serif"> {post.question}</h2>
                     <p>{post.answer}</p>
                 </div>
               </div>

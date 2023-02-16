@@ -28,7 +28,7 @@ const BookingModal = ({children}) => {
           location,
         }
 
-          fetch('http://localhost:5000/bookings', {
+          fetch('https://techmate-server2.vercel.app/bookings', {
           method: 'POST',
           headers: {
                 'content-type': 'application/json'

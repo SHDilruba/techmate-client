@@ -11,7 +11,7 @@ const AdsProductDetail = () => {
 const [modalContent, setModalContent] = useState([]);
 
 useEffect(() => {
-  fetch("http://localhost:5000/advertisementProducts")
+  fetch("https://techmate-server2.vercel.app/advertisementProducts")
     .then((res) => res.json())
     .then((data) => setModalContent(data));
 }, []);
@@ -26,13 +26,13 @@ useEffect(() => {
           setModalContent={setModalContent}
       ></Cards>
      {
-                modalContent.map(content =><BookingModal 
+                modalContent?.map(content =><BookingModal 
                     key={content._id} 
                     children={content}
                     ></BookingModal>)
                }
                 {
-                modalContent.map(content =><WishListModal
+                modalContent?.map(content =><WishListModal
                   key={content._id} 
                   children={content}
                   ></WishListModal>)

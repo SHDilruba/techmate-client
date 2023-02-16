@@ -10,7 +10,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts";
 import About from "../../Pages/About/About";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
-import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
+import AllUsers from "../../Pages/Dashboard/MakeAdmin/MakeAdmin";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyWishList from "../../Pages/Dashboard/MyWishList/MyWishList";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/category/${params.id}`)
+          fetch(`https://techmate-server2.vercel.app/products/category/${params.id}`)
       },
       {
         path: "/productDetail/:id",
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`)
+          fetch(`https://techmate-server2.vercel.app/products/${params.id}`)
       },
       {
         path: "/login",
@@ -132,7 +132,7 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/payment/:id',
         element: <Payment></Payment>,
-        loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+        loader: ({params}) => fetch(`https://techmate-server2.vercel.app/bookings/${params.id}`)
       },
     ],
   },

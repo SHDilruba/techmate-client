@@ -15,10 +15,10 @@ const CategoryProducts = () => {
 
     return (
           <div className='mt-7 mb-10 md:mb-28 md:mx-40'>
-              <h2 className='text-3xl md:text-[4xl] mb-8 text-center font-sans text-accent-focus'>This Category has {categoryProducts.length} {categoryProducts.length > 1 ? 'items available' : 'item available'}</h2>
+              <h2 className='text-[1.3rem] md:text-[2.1rem] mb-[1.5rem] md:mb-[3rem] text-center font-sans text-accent-focus'>This Category has {categoryProducts.length} {categoryProducts.length > 1 ? 'items available' : 'item available'}</h2>
               <div className='grid grid-cols-1 lg:grid-cols-2 mx-auto lg:mx-10 rounded-xl gap-10'>
-            {
-                categoryProducts.map(product => <Cards
+            {  categoryProducts &&
+                categoryProducts?.map(product => <Cards
                     children={product}
                     key={product._id}
                     setModalContent={setModalContent}
@@ -26,7 +26,7 @@ const CategoryProducts = () => {
             }
            </div>
                {
-                modalContent.map(content =><BookingModal 
+                modalContent?.map(content =><BookingModal 
                     key={content._id} 
                     children={content}
                     setIsBooked={setIsBooked}
@@ -35,7 +35,7 @@ const CategoryProducts = () => {
                     ></BookingModal>)
                }
                 {
-                modalContent.map(content =><WishListModal
+                modalContent?.map(content =><WishListModal
                     key={content._id} 
                     children={content}
                     ></WishListModal>)

@@ -1,29 +1,27 @@
 import React from 'react';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../../Shared/hooks/useToken';
 import useTitle from '../../Shared/hooks/useTitle';
 import { GoogleAuthProvider } from 'firebase/auth';
 import logImg from '../../assets/extra/login.webp'
+import { toast } from 'react-hot-toast';
+import Loading from '../../Shared/Loading/Loading';
 
 const Login = () => {
   useTitle('Login');
   const {register, formState: { errors }, handleSubmit} = useForm();
-  const {signIn, providerLogin} = useContext(AuthContext);
+  const {signIn, providerLogin, loading, setLoading} = useContext(AuthContext);
   const [loginError, setLoginError] = useState('');
   const [loginUserEmail, setLoginUserEmail] = useState('');
   const [token] = useToken(loginUserEmail);
 
-  const location = useLocation();
   const navigate = useNavigate();
 
-  const from = location.state?.from?.pathname || '/dashboard';
-
-  // const from = location.state?.from?.pathname || '/';
   if(token){
-    navigate(from, {replace: true});
+    navigate('/dashboard');
   }
 
   const handleLogin = data =>{
@@ -32,11 +30,13 @@ const Login = () => {
     signIn(data.email, data.password)
     .then(result => {
         const user = result.user;
-        setLoginUserEmail(data.email);
+        setLoginUserEmail(data.email); 
+        toast.success('Loged in successfully')
     })
     .catch(error => {
       console.log(error.message)
       setLoginError(error.message);
+      setLoading(false);
     });
   }
 
@@ -46,11 +46,11 @@ const Login = () => {
     providerLogin(googleProvider)
     .then(result => {
       const user = result.user; 
-      navigate(from, {replace: true})
        console.log(user);
      })
      .catch(error => {
       console.error('error', error)
+      setLoading(false);
      })
      }
 
@@ -97,9 +97,13 @@ const Login = () => {
                 <option>seller</option>
                 </select>
             </div>
-
-              <input className='btn btn-accent w-full text-white' value="login"
-              type="submit" />
+            <button  className='btn btn-accent w-full text-white' type="submit">
+              {loading ? <Loading></Loading>
+            : 
+            'Login'}
+            </button>
+              {/* <input className='btn btn-accent w-full text-white' value="login"
+              type="submit"/> */}
               { loginError && <p className='text-red-600'>{loginError}</p>}
           </form>
           <p className='mb-2 mt-4'><small className='text-white mr-1'>New to TecMate?</small> <Link to='/signup' className=' text-accent outline px-1'>create new account </Link></p> 

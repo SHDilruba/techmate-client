@@ -3,6 +3,7 @@ import useTitle from "../../../Shared/hooks/useTitle";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import useVerifySeller from '../../../Shared/hooks/useVerifySeller';
+import { Navigate } from "react-router-dom";
 
 const AddProduct = () => {
   useTitle('addProduct');
@@ -54,7 +55,7 @@ const AddProduct = () => {
 
     console.log(product);
 
-    fetch("http://localhost:5000/addProduct", {
+    fetch("https://techmate-server2.vercel.app/addProduct", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -68,6 +69,7 @@ const AddProduct = () => {
       .catch((er) => console.error(er));
     toast.success("Product added successfully");
     event.target.reset();
+    <Navigate to='/dashboard/myProducts'></Navigate>
   };
 
   return (

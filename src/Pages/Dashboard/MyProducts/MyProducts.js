@@ -10,7 +10,7 @@ const MyProducts = () => {
   const {user} =  useContext(AuthContext);
   const [myProducts, setMyProducts] = useState([]);
    
-  const url = `http://localhost:5000/myProducts?email=${user?.email}`;
+  const url = `https://techmate-server2.vercel.app/myProducts?email=${user?.email}`;
  
   const { data: products = [], refetch } = useQuery({
        queryKey: ['products', user?.email],

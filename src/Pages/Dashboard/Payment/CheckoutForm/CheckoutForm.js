@@ -1,8 +1,9 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 
 const CheckoutForm = ({booking}) => {
-  const { email, user_name, _id, resale_price } = booking;
+  const { email, user_name, _id, resale_price, name } = booking;
 
  const [cardError, setCardError] = useState('');
   const [success, setSuccess] = useState('');
@@ -14,10 +15,10 @@ const CheckoutForm = ({booking}) => {
   const elements = useElements();
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://techmate-server2.vercel.app/create-payment-intent", {
       method: "POST",
       headers: { 
-        "Content-Type": "application/json" ,
+        "Content-Type": "application/json", 
         authorization: `bearer ${localStorage.getItem('accessToken')}`
       },
       body: JSON.stringify({ resale_price }),
@@ -68,14 +69,13 @@ const handleSubmit = async(event)=>{
        return;
    }
    if(paymentIntent.status === "succeeded"){
-      //  console.log('card info', card);
        const payment = {
             resale_price,
             transactionId: paymentIntent.id,
             email,
             bookingId: _id
        }
-       fetch('http://localhost:5000/payments', {
+       fetch('https://techmate-server2.vercel.app/payments', {
          method: 'POST',
          headers: {
           'content-type': 'application/json',
@@ -85,7 +85,6 @@ const handleSubmit = async(event)=>{
        })
        .then(res => res.json())
        .then(data => {
-        console.log(data);
          if(data.insertedId){
           setSuccess('Congrats! Your payment is completed');
            setTransactionId(paymentIntent.id);
@@ -94,6 +93,21 @@ const handleSubmit = async(event)=>{
      }
       setProcessing(false);
 }
+
+const handleProductUpdate = name =>{
+  fetch(`https://techmate-server2.vercel.app/products/paid/${name}`,{
+      method: 'PUT',
+      headers: {
+         authorization: `bearer ${localStorage.getItem('accessToken')}`
+      }
+  })
+   .then(res => res.json())
+   .then (data => {
+       if(data.modifiedCount > 0){
+        toast.success('updated successfully')
+       }
+   })
+ };
 
   return (
      <div>
@@ -115,6 +129,7 @@ const handleSubmit = async(event)=>{
       }}
     />
     <button 
+     onClick={()=>handleProductUpdate(name)}  
     className='btn btn-sm mt-8 btn-accent' 
     type="submit"
     disabled={!stripe || !clientSecret || processing}

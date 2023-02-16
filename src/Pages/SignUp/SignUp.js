@@ -8,18 +8,17 @@ import useTitle from '../../Shared/hooks/useTitle';
 import Loading from '../../Shared/Loading/Loading';
 
 const SignUp = () => {
-    useTitle('SignUp');
+  useTitle('signup');
   const {register,  handleSubmit, formState: { errors } } = useForm();
   const {createUser, updateUser, loading, setLoading} = useContext(AuthContext);
   const [signUpError, setSignUpError] = useState('');
-  const [success, setSuccess] = useState(false);
    
   const [createdUserEmail, setCreatedUserEmail] = useState('');
   const [token] = useToken(createdUserEmail);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   if(token){
-    navigate('/');
+    navigate('/dashboard');
   }
 
   const handleSignUp = (data) =>{
@@ -28,7 +27,6 @@ const SignUp = () => {
     .then(result =>{
        const user = result.user;
        console.log(user);
-       setSuccess(true); 
        toast.success('Signed up successfully')
         const userInfo = {
         displayName: data.name,
@@ -51,7 +49,7 @@ const SignUp = () => {
 
   const saveUser = (name, email, role) =>{
       const user = {name, email, role};
-      fetch('http://localhost:5000/users', {
+      fetch('https://techmate-server2.vercel.app/users', {
          method: 'POST',
          headers: {
                'content-type': 'application/json'
@@ -60,6 +58,7 @@ const SignUp = () => {
       })
       .then(res => res.json())
       .then(data =>{
+        localStorage.setItem('accessToken', data.token);
         setCreatedUserEmail(email);
       })
   }
