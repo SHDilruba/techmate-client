@@ -1,7 +1,8 @@
 ## Website name: 
 ## TechMate 
 
-## Live link: https://techmate-9953e.web.app/ 
+### Live Link: https://techmate-9953e.web.app/ 
+### Code link (server): https://github.com/SHDilruba/techmate-server
 
 ## Features:
 + This MERN Stack website is about selling used (second-hand) computers with the ability to advertise a product.
